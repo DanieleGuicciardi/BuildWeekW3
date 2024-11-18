@@ -3,5 +3,30 @@ html, body {
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", serif;
-    background-color: pink;
+    background-image: url(/assets/img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
 }
+
+header, main, footer{
+    padding-top: 3%;
+    margin-left: 10%;
+}
+
+#headerLogo{
+    width: 15%;
+}
+
+
+
+.welcomeContainer h1{
+    font-weight: 700;
+    font-size: 7em ;
+}
+
+.welcomeContainer span{
+    font-weight: 400;
+    
+}
+
