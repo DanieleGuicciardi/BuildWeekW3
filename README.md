@@ -2,24 +2,22 @@
 Progetto del **Team 3**
 
 ## **Descrizione del Progetto**
-Questo progetto ricrea una versione della pagina Benchmark di Epicode, suddivisa in quattro sezioni principali: **Welcome**, **Questions**, **Results** e **Feedback**. La pagina è stata sviluppata in gruppo utilizzando GitHub per la gestione del versionamento e il lavoro collaborativo.
-
-Il progetto segue una pipeline di sviluppo strutturata, con obiettivi giornalieri specifici. La documentazione qui riportata spiega come abbiamo organizzato il lavoro, implementato le funzionalità e gestito i file e le cartelle.
+Questo progetto prevede la creazione di una versione ricostruita della pagina del Benchmark di Epicode. In maniera più dettagliata abbiamo previsto la creazione di quattro pagine: **Welcome**, **Questions**, **Results** e **Feedback**
 
 ---
 
 ## **Pagine**
 ### 1. **Welcome**
-La prima pagina accoglie l’utente con una descrizione introduttiva e un pulsante per procedere. Implementa un controllo per assicurarsi che l'utente abbia completato le informazioni richieste prima di avanzare.
+Nella pagina Welcome sono presenti le regole introduttive per poter completare in modo corretto il test. All’ interno della pagina è inoltre necessario ‘spuntare’ la casella per poter accedere alla seconda pagina del progetto.
 
 ### 2. **Questions**
-Questa pagina mostra una serie di domande con un timer e gestisce il salvataggio delle risposte nel local storage. Ogni risposta è valutata per determinare il punteggio finale.
+ La pagina Questions è la pagina che contiene le domande a cui dover rispondere. È formata da 10 domande random con ognuna 2 o 4 risposte a cui è necessario rispondere, dal momento che non viene data nessuna risposta il risultato sarà negativo. La domanda successiva arriva allo scadere del tempo o cliccando sul bottone ‘prossima domanda’.
 
 ### 3. **Results**
-Mostra un'analisi delle risposte date dall'utente, includendo una percentuale di successo e un messaggio che indica se il benchmark è stato superato.
+La pagina Results è quella dedicata alla memorizzazione delle risposte corrette e sbagliate. L’ utente in questa pagina può visionare il risultato del proprio test, vedendo più nel dettaglio le percentuali delle risposte giuste e delle risposte sbagliate. Inoltre, in questa pagina è possibile visionare un grafico che rappresenti il risultato del proprio test.
 
 ### 4. **Feedback**
-L'ultima pagina consente all'utente di lasciare un feedback, selezionando un numero di stelle e salvando il giudizio.
+Nella pagina feedback, l’utente ha la possibilità di dare un opinione su Epicode tramite il click su delle stelline azzurre presenti all’ interno della pagina. Successivamente nella pagina è possibile lasciare un commento scritto per potersi esprimere meglio il proprio giudizio
 
 ---
 
