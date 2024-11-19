@@ -91,3 +91,21 @@ label {
     font-size: large;
     color: red;
 }
+
+/* style stelline */
+
+.stars-container {
+    display: flex;
+    gap: 5px;
+
+}
+
+.star {
+    cursor: pointer;
+    opacity: 0.1;
+    transition: opacity 0.3s, fill 0.3s;
+}
+
+.star:hover, .star.selected, .star.active {
+    opacity: 1; 
+}
