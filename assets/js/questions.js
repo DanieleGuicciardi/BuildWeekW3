@@ -98,27 +98,27 @@ const questions = [
     },
 ];
 
-
-// globali timer
-let timeLeft = 5;
+let timeLeft = 30;
+let timerId;
 let elem = document.getElementById('timer');
 let quest = document.getElementById("questions");
-let answer = document.getElementById("container")
-const form = document.querySelector("form");
+let answer = document.getElementById("container");
+let counter = document.getElementById("counter");
 
-//funzione init
 document.addEventListener("load", init());
 
 function init() {
+    startTimer();
     printQuestions();
 }
 
-// funzione timer
-let timerId = setInterval(countdown, 1000);
+function startTimer() {
+    timerId = setInterval(countdown, 1000);
+}
 
 function countdown() {
-    if (timeLeft == -1) {
-        clearTimeout(timerId);
+    if (timeLeft === 0) {
+        clearInterval(timerId);
         salvaRisposta();
     } else {
         elem.innerHTML = timeLeft;
@@ -127,188 +127,39 @@ function countdown() {
 }
 
 function salvaRisposta() {
-    location.href = "questions.html";
+    nextPage();
 }
 
-//funzione domande
+function nextPage() {
+    window.location.href = "results.html";
+}
+
 function printQuestions(attempts = 0) {
     if (attempts > questions.length) {
         localStorage.clear();
         nextPage();
         return;
     }
-    let casual = Math.floor(Math.random() * questions.length);//ci scusi, anche a noi sembra la cosa più brutta mai vista nella programmazione
-    let risp1;let risp2;let risp3;let risp4;
+
+    let casual = Math.floor(Math.random() * questions.length);
     if (!localStorage.getItem(`domanda${casual}`)) {
-        quest.innerText = questions[casual].question;
-        switch (questions[casual]) {
-            case questions[0]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[0].incorrect_answers[0];
-                risp2.innerText = questions[0].incorrect_answers[2];
-                risp3.innerText = questions[0].correct_answer;
-                risp4.innerText = questions[0].incorrect_answers[1];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-            case questions[1]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[1].correct_answer;
-                risp2.innerText = questions[1].incorrect_answers[0];
-                risp3.innerText = questions[1].incorrect_answers[2];
-                risp4.innerText = questions[1].incorrect_answers[1];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-            case questions[2]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp1.innerText = questions[2].correct_answer;
-                risp2.innerText = questions[2].incorrect_answers[0];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                break;
-            case questions[3]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp1.innerText = questions[3].correct_answer;
-                risp2.innerText = questions[3].incorrect_answers[0];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                break;
-            case questions[4]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[4].incorrect_answers[1];
-                risp2.innerText = questions[4].incorrect_answers[0];
-                risp3.innerText = questions[4].incorrect_answers[2];
-                risp4.innerText = questions[4].correct_answer;
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-            case questions[5]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[5].incorrect_answers[1];
-                risp2.innerText = questions[5].correct_answer;
-                risp3.innerText = questions[5].incorrect_answers[2];
-                risp4.innerText = questions[5].incorrect_answers[0];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-            case questions[6]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[6].incorrect_answers[1];
-                risp2.innerText = questions[6].incorrect_answers[2];
-                risp3.innerText = questions[6].correct_answer;
-                risp4.innerText = questions[6].incorrect_answers[0];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-            case questions[7]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[7].correct_answer;
-                risp2.innerText = questions[7].incorrect_answers[2];
-                risp3.innerText = questions[7].incorrect_answers[0];
-                risp4.innerText = questions[7].incorrect_answers[1];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-            case questions[8]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp1.innerText = questions[8].correct_answer;
-                risp2.innerText = questions[8].incorrect_answers[0];
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                break;
-            case questions[9]:
-                risp1 = document.createElement("button");
-                risp2 = document.createElement("button");
-                risp3 = document.createElement("button");
-                risp4 = document.createElement("button");
-                risp1.setAttribute("type", "button");
-                risp2.setAttribute("type", "button");
-                risp3.setAttribute("type", "button");
-                risp4.setAttribute("type", "button");
-                risp1.innerText = questions[9].incorrect_answers[2];
-                risp2.innerText = questions[9].incorrect_answers[0];
-                risp3.innerText = questions[9].incorrect_answers[1];
-                risp4.innerText = questions[9].correct_answer;
-                answer.appendChild(risp1);
-                answer.appendChild(risp2);
-                answer.appendChild(risp3);
-                answer.appendChild(risp4);
-                break;
-        }
+        const question = questions[casual];
+        quest.innerText = question.question;
+
+        const allAnswers = [question.correct_answer, ...question.incorrect_answers];
+        allAnswers.sort(() => Math.random() - 0.5);
+
+        answer.innerHTML = '';
+        allAnswers.forEach(answerText => {
+            const button = document.createElement("button");
+            button.setAttribute("type", "button");
+            button.innerText = answerText;
+            answer.appendChild(button);
+        });
+
+        counter.innerHTML = `${localStorage.length + 1}/10`;
         localStorage.setItem(`domanda${casual}`, quest.innerText);
     } else {
         printQuestions(attempts + 1);
     }
-}
-
-form.addEventListener("submit", function(){
-    salvaRisposta();
-})
-
-function nextPage() {
-    window.location.href = "result.html";
 }
