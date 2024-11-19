@@ -147,7 +147,7 @@ function printQuestions(attempts = 0) {
         quest.innerText = question.question;
 
         const allAnswers = [question.correct_answer, ...question.incorrect_answers];
-        allAnswers.sort(() => Math.random() - 0.5); // Shuffle answers
+        allAnswers.sort(() => Math.random() - 0.5);
 
         answer.innerHTML = '';
         allAnswers.forEach(answerText => {
