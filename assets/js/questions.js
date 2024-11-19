@@ -98,68 +98,88 @@ const questions = [
     },
 ];
 
-let timeLeft = 30;
+let timeLeft = 1000;
 let timerId;
-let elem = document.getElementById('timer');
-let quest = document.getElementById("questions");
-let answer = document.getElementById("container");
-let counter = document.getElementById("counter");
+const quest = document.getElementById("questions");
+const btnAvanti = document.getElementById("avanti");
+const answersContainer = document.getElementById("container");
+const array = [];
+let currentAnswer = null;
 
 document.addEventListener("load", init());
 
 function init() {
-    startTimer();
-    printQuestions();
+    printQuestion();
+    localStorage.clear();
 }
 
-function startTimer() {
-    timerId = setInterval(countdown, 1000);
-}
-
-function countdown() {
+function updateTimer() {
+    const timerElement = document.getElementById("timer");
+    timerElement.textContent = timeLeft;
     if (timeLeft === 0) {
-        clearInterval(timerId);
-        salvaRisposta();
+        resetTimer();
     } else {
-        elem.innerHTML = timeLeft;
         timeLeft--;
     }
 }
 
-function salvaRisposta() {
-    nextPage();
+function resetTimer() {
+    clearInterval(timerId);
+    timeLeft = 1000;
+    timerId = setInterval(updateTimer, 1000);
+    printQuestion();
 }
 
-function nextPage() {
-    window.location.href = "results.html";
-}
+timerId = setInterval(updateTimer, 1000);
 
-function printQuestions(attempts = 0) {
-    if (attempts > questions.length) {
-        localStorage.clear();
+function printQuestion() {
+    let casual;
+    if (array.length === questions.length) {
         nextPage();
         return;
     }
+    do {
+        casual = Math.floor(Math.random() * questions.length);
+    } while (array.includes(casual));
+    array.push(casual);
+    let questionData = questions[casual];
+    quest.innerText = questionData.question;
+    const allAnswers = [...questionData.incorrect_answers, questionData.correct_answer];
+    allAnswers.sort(() => Math.random() - 0.5);
+    answersContainer.innerHTML = '';
 
-    let casual = Math.floor(Math.random() * questions.length);
-    if (!localStorage.getItem(`domanda${casual}`)) {
-        const question = questions[casual];
-        quest.innerText = question.question;
+    allAnswers.forEach(answer => {
+        const button = document.createElement("button");
+        button.setAttribute("type", "button");
+        button.innerText = answer;
+        button.classList.add("answer-btn");
+        button.addEventListener("click", (event) => selectAnswer(event, answer, questionData.correct_answer));
+        answersContainer.appendChild(button);
+    });
+    counter.innerHTML = `${array.length}/10`;
+}
 
-        const allAnswers = [question.correct_answer, ...question.incorrect_answers];
-        allAnswers.sort(() => Math.random() - 0.5);
+function nextPage() {
+    location.href = "results.html";
+}
 
-        answer.innerHTML = '';
-        allAnswers.forEach(answerText => {
-            const button = document.createElement("button");
-            button.setAttribute("type", "button");
-            button.innerText = answerText;
-            answer.appendChild(button);
-        });
+btnAvanti.addEventListener("click", () => saveAnswer());
 
-        counter.innerHTML = `${localStorage.length + 1}/10`;
-        localStorage.setItem(`domanda${casual}`, quest.innerText);
-    } else {
-        printQuestions(attempts + 1);
+function selectAnswer(event, selectedAnswer, correctAnswer) {
+    const buttons = answersContainer.querySelectorAll("button");
+    buttons.forEach(button => button.classList.remove("selected"));
+    event.target.classList.add("selected");
+    currentAnswer = { selectedAnswer, correctAnswer };
+}
+
+function saveAnswer() {
+    if (currentAnswer) {
+        let answers = JSON.parse(localStorage.getItem("answers")) || [];
+        if (currentAnswer.selectedAnswer === currentAnswer.correctAnswer) {
+            answers.push(1);
+        }
+        localStorage.setItem("answers", JSON.stringify(answers));
+        currentAnswer = null;
     }
+    resetTimer();
 }
