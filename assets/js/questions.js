@@ -310,5 +310,5 @@ form.addEventListener("submit", function(){
 })
 
 function nextPage() {
-    window.location.href = "result.html";
+    window.location.href = "results.html";
 }
