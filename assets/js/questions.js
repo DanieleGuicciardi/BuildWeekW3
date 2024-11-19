@@ -105,6 +105,7 @@ let elem = document.getElementById('timer');
 let quest = document.getElementById("questions");
 let answer = document.getElementById("container")
 const form = document.querySelector("form");
+let counter = document.getElementById("counter");
 
 //funzione init
 document.addEventListener("load", init());
@@ -299,6 +300,7 @@ function printQuestions(attempts = 0) {
                 answer.appendChild(risp4);
                 break;
         }
+        counter.innerHTML = `${localStorage.length + 1}/10`
         localStorage.setItem(`domanda${casual}`, quest.innerText);
     } else {
         printQuestions(attempts + 1);
