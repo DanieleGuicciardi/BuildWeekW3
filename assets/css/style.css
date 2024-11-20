@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     background-image: url("/assets/img/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -10,12 +11,14 @@ html, body {
     width: 15em;
 }
 
-header, main, footer {
+.welcomeHeader,
+.welcomeMain,
+.welcomeFooter {
     margin-left: 8em;
-    margin-right: 8em; 
+    margin-right: 8em;
 }
 
-header {
+.welcomeHeader {
     padding-top: 2em;
 }
 
@@ -23,22 +26,21 @@ header {
     line-height: 80%;
     font-weight: 400;
     font-size: 4em;
-} 
+}
 
-h1 span{
+.welcomeContainer h1 span {
     font-weight: 700;
 }
 
-.welcomeContainer{
+.welcomeContainer {
     font-size: larger;
 }
 
-.welcomeContainer h2{
-
+.welcomeContainer h2 {
     color: #C2128D;
 }
 
-#welcomeList span{
+#welcomeList span {
     font-weight: bold;
 }
 
@@ -46,7 +48,7 @@ h1 span{
     margin-top: 3em;
 }
 
-#welcomeList li{
+#welcomeList li {
     margin-top: 0.4em;
 }
 
@@ -54,11 +56,12 @@ h1 span{
     margin-top: 5em;
 }
 
-#footerForm div, #footerForm button{
+#footerForm div,
+#footerForm button {
     display: inline-block;
 }
 
-#footerForm button {
+#welcomeBtn {
     margin-left: 35em;
     width: 10em;
     height: 2.5em;
@@ -69,12 +72,12 @@ h1 span{
     box-shadow: 0px 0px 25px 3px #00FFFF;
 }
 
-#welcomeCheckBox:checked { 
-    background-color: white
+#welcomeCheckBox:checked {
+    background-color: white;
 }
 
 #welcomeCheckBox {
-    cursor: pointer; 
+    cursor: pointer;
     appearance: none;
     width: 1.3em;
     height: 1.3em;
@@ -82,11 +85,141 @@ h1 span{
     border: 2px solid white;
 }
 
-label {
+.label {
     font-weight: 700;
 }
 
 #advert {
     font-size: large;
     color: red;
+}
+
+.headerQuestions {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+#headerLogo {
+    width: 15em;
+}
+
+.headerQuestions,
+.mainQuestions,
+.footerQuestions {
+    margin-left: 8em;
+    margin-right: 8em;
+}
+
+.timerFlex {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outerCircle {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 10;
+}
+
+.progressCircle {
+    fill: none;
+    stroke: #00FFFF;
+    stroke-width: 10;
+    stroke-dasharray: 439.82;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+}
+
+#timer {
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4em;
+    color: white;
+    z-index: 3;
+}
+
+.mainQuestions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* domande */
+
+#questions {
+    display: flex;
+    flex-direction: column;
+    line-height: 0.9em;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+}
+
+.answer-btn {
+    cursor: pointer;
+    color: whitesmoke;
+    margin: 2%;
+    padding: 10px;
+    border-radius: 50px 50px;
+    width: 23rem;
+    background-color: rgba(128, 128, 128, 0.1);
+    height: 4rem;
+    font-size: 35px;
+    box-sizing: content-box;
+}
+
+/* Nex pag */
+
+.nextPag {
+    margin-right: -4em;
+    width: 10em;
+    height: 2.5em;
+    font-size: xx-large;
+    font-weight: 700;
+    background-color: #00FFFF;
+    border: none;
+    box-shadow: 0px 0px 25px 3px #00FFFF;
+}
+
+#counter {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: ce;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.footerQuestions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.selected {
+    background-color: #D20094;
+}
+
+/* style stelline */
+
+.stars-container {
+    display: flex;
+    gap: 5px;
+    
+}
+
+.star {
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.1;
+    transition: opacity 0.3s, fill 0.3s;
+}
+
+.star:hover, .star.selected, .star.active {
+    opacity: 1; 
 }
