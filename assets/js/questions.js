@@ -98,7 +98,7 @@ const questions = [
     },
 ];
 
-let timeLeft = 1000;
+let timeLeft = 30;
 let timerId;
 const quest = document.getElementById("questions");
 const btnAvanti = document.getElementById("avanti");
@@ -125,7 +125,7 @@ function updateTimer() {
 
 function resetTimer() {
     clearInterval(timerId);
-    timeLeft = 1000;
+    timeLeft = 30;
     timerId = setInterval(updateTimer, 1000);
     printQuestion();
 }
@@ -147,7 +147,6 @@ function printQuestion() {
     const allAnswers = [...questionData.incorrect_answers, questionData.correct_answer];
     allAnswers.sort(() => Math.random() - 0.5);
     answersContainer.innerHTML = '';
-
     allAnswers.forEach(answer => {
         const button = document.createElement("button");
         button.setAttribute("type", "button");
