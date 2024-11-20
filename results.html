@@ -7,45 +7,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/assets/css/reset.css">
     <link rel="stylesheet" href="/assets/css/style.css" />
     <title>Results</title>
 </head>
 <body>
-    <header>
+    <header class="headerResults">
         <img src="/assets/img/epicode_logo.png" id="headerLogo" />
     </header>
-
-    <main>
+    <main class="mainResults">
         <div>
-            <h1>Results</h1>
-            <p>The summary of your answers</p>
+            <h1 class="resultTitle">Results</h1>
+            <p class="resultP">The summary of your answers:</p>
         </div>
 
-        <div>
+        <div class="graphic">
             <div id="correctResult"> 
                 <h2>Correct</h2>
             </div>
 
-            <div>  <!-- Spazio per il grafico -->
+            <div class="graph">
                 <canvas id="graph"></canvas>
-                <div id="graphContent"> <!-- scritta all interno del grafico -->
-                    
-                </div>
+                <div id="graphContent"></div>
             </div>
 
             <div id="wrongResult">
                 <h2>Wrong</h2>
             </div>
         </div>
-
     </main>
-
-    <footer>
+    <footer class="footerResults">
         <button type="button" id="rateUsBtn">RATE US</button>
     </footer>
-    
-
     <script src="/assets/js/results.js"></script>
 </body>
 </html>

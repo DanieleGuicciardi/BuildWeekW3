@@ -5,6 +5,7 @@ body {
     background-size: cover;
     color: white;
     font-family: "Montserrat", serif;
+    min-height: 100vh;
 }
 
 #headerLogo {
@@ -18,7 +19,9 @@ body {
     margin-right: 8em;
 }
 
-.welcomeHeader {
+.welcomeHeader,
+.headerQuestions,
+.headerResults {
     padding-top: 2em;
 }
 
@@ -62,7 +65,8 @@ body {
 }
 
 #welcomeBtn {
-    margin-left: 35em;
+    cursor: pointer;
+    margin-left: 20em;
     width: 10em;
     height: 2.5em;
     font-size: xx-large;
@@ -98,10 +102,6 @@ body {
     justify-content: space-between;
     display: flex;
     align-items: center;
-}
-
-#headerLogo {
-    width: 15em;
 }
 
 .headerQuestions,
@@ -166,7 +166,7 @@ body {
     margin: 2%;
     padding: 10px;
     border-radius: 50px 50px;
-    width: 23rem;
+    width: 26rem;
     background-color: rgba(128, 128, 128, 0.1);
     height: 4rem;
     font-size: 35px;
@@ -176,6 +176,7 @@ body {
 /* Nex pag */
 
 .nextPag {
+    cursor: pointer;
     margin-right: -4em;
     width: 10em;
     height: 2.5em;
@@ -210,7 +211,7 @@ body {
 .stars-container {
     display: flex;
     gap: 5px;
-    
+
 }
 
 .star {
@@ -220,6 +221,88 @@ body {
     transition: opacity 0.3s, fill 0.3s;
 }
 
-.star:hover, .star.selected, .star.active {
-    opacity: 1; 
+.star:hover,
+.star.selected,
+.star.active {
+    opacity: 1;
+}
+
+#container {
+    width: 70em;
+}
+
+.headerResults,
+.mainResults,
+.footerResults {
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+.graph {
+    width: 35em;
+    height: 35em;
+}
+
+.graphic div {
+    display: inline-block;
+}
+
+.mainResults,
+.footerResults {
+    text-align: center;
+}
+
+#rateUsBtn {
+    width: 10em;
+    height: 2.5em;
+    font-size: xx-large;
+    font-weight: 700;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    margin-top: 1.5em;
+}
+
+#rateUsBtn:hover {
+    cursor: pointer;
+    background-color: #03FFFF;
+    filter: drop-shadow(0 0 10px #03FFFF);
+    opacity: 1;
+}
+
+.resultTitle {
+    font-size: 3em;
+}
+
+.resultP {
+    font-size: 1.5em;
+}
+
+.graphic {
+    display: flex;
+    justify-content: space-between;
+}
+
+#correctResult,
+#wrongResult {
+    font-size: xx-large;
+}
+
+#graphContent {
+    width: 20em;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#graphContent h3 {
+    font-weight: 600;
+    line-height: 1.8;
+}
+
+#graphContent>p:last-child {
+    line-height: 1.5;
+    font-weight: lighter;
+    font-size: 0.8em;
 }
