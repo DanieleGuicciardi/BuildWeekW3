@@ -103,19 +103,30 @@ let timerId;
 const quest = document.getElementById("questions");
 const btnAvanti = document.getElementById("avanti");
 const answersContainer = document.getElementById("container");
+const counter = document.getElementById("counter");
 const array = [];
 let currentAnswer = null;
+const timerElement = document.getElementById("timer");
+const progressCircle = document.querySelector(".progressCircle");
 
 document.addEventListener("load", init());
 
 function init() {
     printQuestion();
     localStorage.clear();
+    startTimer();
+}
+
+function startTimer() {
+    printQuestion();
+    timerId = setInterval(updateTimer, 1000);
 }
 
 function updateTimer() {
-    const timerElement = document.getElementById("timer");
     timerElement.textContent = timeLeft;
+    const percentage = (timeLeft / 30) * 100;
+    const dashOffset = (439.82 * (100 - percentage)) / 100;
+    progressCircle.style.strokeDashoffset = dashOffset;
     if (timeLeft === 0) {
         resetTimer();
     } else {
@@ -126,11 +137,10 @@ function updateTimer() {
 function resetTimer() {
     clearInterval(timerId);
     timeLeft = 30;
-    timerId = setInterval(updateTimer, 1000);
-    printQuestion();
+    progressCircle.style.strokeDashoffset = 0;
+    timerElement.textContent = timeLeft;
+    startTimer();
 }
-
-timerId = setInterval(updateTimer, 1000);
 
 function printQuestion() {
     let casual;
@@ -155,7 +165,7 @@ function printQuestion() {
         button.addEventListener("click", (event) => selectAnswer(event, answer, questionData.correct_answer));
         answersContainer.appendChild(button);
     });
-    counter.innerHTML = `${array.length}/10`;
+    counter.innerHTML = `Questions ${array.length}/10`;
 }
 
 function nextPage() {

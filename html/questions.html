@@ -1,39 +1,46 @@
-<html>
-<head>
-    <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="it">
+
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/reset.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <title>Pagina Domande</title>
-</head>
+  </head>
 
-<body>
-
-    <header><img src="/assets/img/epicode_logo.png" id="headerLogo">
-        <div id="timer"></div> <!--Qui mettiamo il timer-->
+  <body>
+    <header class="headerQuestions">
+      <img src="/assets/img/epicode_logo.png" id="headerLogo" />
+      <div class="timerFlex">
+        <svg width="150" height="150">
+            <circle cx="75" cy="75" r="70" class="outerCircle"></circle>
+            <circle cx="75" cy="75" r="70" class="progressCircle" transform="rotate(-90 75 75)" />
+        </svg>
+        <div id="timer"></div>
+    </div>
     </header>
 
-
-    <main>
+    <main class="mainQuestions">
         <div>
-            <h1 id="questions"></h1> <!-- qui mettiamo il testo della domanda-->
+          <h1 id="questions"></h1>
         </div>
 
-        <div id="container">
-
-        </div>
+        <div id="container"></div>
     </main>
-    <footer>
-        <div>
-            <p id="counter"> </p> <!--Qui mettiamo il contatore delle domande-->
-        </div>
-        <form>
-            <button type="button" id="avanti">avanti</button>
-        </form>
+    <footer class="footerQuestions">
+      <div>
+        <p id="counter"></p>
+      </div>
+      <form >
+        <button type="button" class="nextPag" id="avanti">NEXT!</button>
+      </form>
     </footer>
     <script src="/assets/js/questions.js"></script>
-</body>
+  </body>
 </html>
