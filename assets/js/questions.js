@@ -118,7 +118,6 @@ function init() {
 }
 
 function startTimer() {
-    printQuestion();
     timerId = setInterval(updateTimer, 1000);
 }
 
@@ -139,6 +138,7 @@ function resetTimer() {
     timeLeft = 30;
     progressCircle.style.strokeDashoffset = 0;
     timerElement.textContent = timeLeft;
+    printQuestion();
     startTimer();
 }
 
