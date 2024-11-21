@@ -99,6 +99,7 @@ const questions = [
 ];
 
 let timeLeft = 30;
+let totalTime = 30;
 let timerId;
 const quest = document.getElementById("questions");
 const btnAvanti = document.getElementById("avanti");
@@ -109,7 +110,7 @@ let currentAnswer = null;
 const timerElement = document.getElementById("timer");
 const progressCircle = document.querySelector(".progressCircle");
 const totalQuestions = {
-    total: "/10",
+    total: `/${questions.length}`,
     styleTotal: "color: #C2128D",
 }
 
@@ -128,7 +129,7 @@ function startTimer() {
 
 function updateTimer() {
     timerElement.textContent = timeLeft;
-    const percentage = (timeLeft / 30) * 100;
+    const percentage = (timeLeft / totalTime) * 100;
     const dashOffset = (439.82 * (100 - percentage)) / 100;
     progressCircle.style.strokeDashoffset = dashOffset;
     if (timeLeft === 0) {
@@ -159,6 +160,13 @@ function printQuestion() {
     array.push(casual);
     let questionData = questions[casual];
     quest.innerText = questionData.question;
+    if (questionData.difficulty === "hard") {
+        timeLeft = 60;
+        totalTime = 60;
+    } else {
+        timeLeft = 30;
+        totalTime = 30;
+    }
     const allAnswers = [...questionData.incorrect_answers, questionData.correct_answer];
     allAnswers.sort(() => Math.random() - 0.5);
     answersContainer.innerHTML = '';
