@@ -214,12 +214,12 @@ const questions = [
       }
 ];
 
-const answers = JSON.parse(localStorage.getItem('answers')) || [];
+const answers = JSON.parse(localStorage.getItem("answers")) || [];
 const totalQuestions = questions.length;
 const correctAnswers = answers.filter((elem) => elem === 1).length;
 const minRequired = questions.length/2;
 const wrongAnswers = totalQuestions - correctAnswers;
-const ctx = document.getElementById('graph').getContext('2d');
+const ctx = document.getElementById("graph").getContext("2d");
 const correctPercentage = (correctAnswers / totalQuestions) * 100;
 const wrongPercentage = (wrongAnswers / totalQuestions) * 100;
 
