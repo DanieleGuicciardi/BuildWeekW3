@@ -108,6 +108,11 @@ const array = [];
 let currentAnswer = null;
 const timerElement = document.getElementById("timer");
 const progressCircle = document.querySelector(".progressCircle");
+const totalQuestions = {
+    total: "/10",
+    styleTotal: "color: #C2128D",
+}
+
 
 document.addEventListener("load", init());
 
@@ -165,7 +170,7 @@ function printQuestion() {
         button.addEventListener("click", (event) => selectAnswer(event, answer, questionData.correct_answer));
         answersContainer.appendChild(button);
     });
-    counter.innerHTML = `Questions ${array.length}/10`;
+    counter.innerHTML = `Questions ${array.length}` + getStyledQuestion(totalQuestions);
 }
 
 function nextPage() {
@@ -191,4 +196,8 @@ function saveAnswer() {
         currentAnswer = null;
     }
     resetTimer();
+}
+
+function getStyledQuestion(counter) {
+    return `<span style="${counter.styleTotal}">${counter.total}</span>`;   //funzione per colorare la scritta /10
 }
