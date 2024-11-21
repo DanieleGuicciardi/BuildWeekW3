@@ -21,7 +21,8 @@ body {
 
 .welcomeHeader,
 .headerQuestions,
-.headerResults {
+.headerResults,
+.headerFeedback {
     padding-top: 2em;
 }
 
@@ -76,21 +77,44 @@ body {
     box-shadow: 0px 0px 25px 3px #00FFFF;
 }
 
-#welcomeCheckBox:checked {
-    background-color: white;
-}
-
 #welcomeCheckBox {
-    cursor: pointer;
-    appearance: none;
-    width: 1.3em;
-    height: 1.3em;
+    position: relative;
+    top: 0.5em;
+    width: 1.8em;
+    height: 1.8em;
     background-color: transparent;
+    border-radius: .25rem;
+    appearance: none;
+    cursor: pointer;
     border: 2px solid white;
 }
 
-.label {
-    font-weight: 700;
+#welcomeCheckBox:checked {
+    background-color: #900080;
+}
+
+#welcomeCheckBox::before {
+    content:"";
+    position: absolute;
+    top: 0%;
+    left: 30%;
+    width: 5px;
+    height: 13px;
+    border: 3px solid transparent;
+    border-left: none;
+    border-top: none;
+    transform: rotate(45deg) scale(1);
+}
+
+#welcomeCheckBox:checked:before {
+    border-color: #fff;
+    animation: checkAnim .2s ease;
+}
+
+@keyframes checkAnim {
+    from {
+        transform: rotate(45deg) scale(10);
+    }
 }
 
 #advert {
@@ -173,7 +197,7 @@ body {
     box-sizing: content-box;
 }
 
-/* Nex pag */
+/* Next paga */
 
 .nextPag {
     cursor: pointer;
@@ -211,7 +235,7 @@ body {
 .stars-container {
     display: flex;
     gap: 5px;
-
+    justify-content: center;
 }
 
 .star {
@@ -306,3 +330,51 @@ body {
     font-weight: lighter;
     font-size: 0.8em;
 }
+
+.headerFeedback,
+.mainFeedback,
+.footerFeedback {
+    margin-left: 8em;
+    margin-right: 8em;
+}
+
+.mainFeedback,
+.footerFeedback {
+    display: flex;
+    justify-content:center ;
+    flex-direction: column;
+    text-align: center;
+}
+
+#feedbackComment {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid  #D20094;
+    padding-right: 30%;
+    margin-top: 5%;
+    color: white;
+}
+#feedbackComment:focus{
+    outline: none;
+}
+
+#moreInfoBtn {
+    cursor: pointer;
+    width: 10em;
+    height: 2.5em;
+    font-size: large;
+    font-weight: 700;
+    background-color: #00FFFF;
+    border: none;
+    filter: drop-shadow(0 0 10px #03FFFF);
+    opacity: 1;
+    margin-top: 3em;
+
+}
+
+.h1extra {
+    text-align: center;
+    font-size: 8em;
+    filter: drop-shadow(0 0 10px #03FFFF);
+}
+
