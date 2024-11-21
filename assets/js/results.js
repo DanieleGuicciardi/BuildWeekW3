@@ -96,6 +96,122 @@ const questions = [
         correct_answer: "Java",
         incorrect_answers: ["Python", "C", "Jakarta"],
     },
+    {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "This mobile OS held the largest market share in 2012",
+        correct_answer: "iOS",
+        incorrect_answers: [
+          "Android",
+          "BlackBerry",
+          "Symbian"
+        ]
+      },
+      {
+        type: "boolean",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "Linux was first created as an alternative to Windows XP.",
+        correct_answer: "False",
+        incorrect_answers: [
+          "True"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "On Twitter, what was the original character limit for a Tweet?",
+        correct_answer: "140",
+        incorrect_answers: [
+          "120",
+          "160",
+          "100"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "How long is an IPv6 address?",
+        correct_answer: "128 bits",
+        incorrect_answers: [
+          "32 bits",
+          "64 bits",
+          "128 bytes"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
+        correct_answer: "Final",
+        incorrect_answers: [
+          "Static",
+          "Private",
+          "Public"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "According to the International System of Units, how many bytes are in a kilobyte of RAM?",
+        correct_answer: "1000",
+        incorrect_answers: [
+          "512",
+          "1024",
+          "500"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "The series of the Intel HD graphics generation succeeding that of the 5000 and 6000 series (Broadwell) is called:",
+        correct_answer: "HD Graphics 500",
+        incorrect_answers: [
+          "HD Graphics 700 ",
+          "HD Graphics 600",
+          "HD Graphics 7000"
+        ]
+      },
+      {
+        type: "boolean",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "The NVidia GTX 1080 gets its name because it can only render at a 1920x1080 screen resolution.",
+        correct_answer: "False",
+        incorrect_answers: [
+          "True"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "Which computer language would you associate Django framework with?",
+        correct_answer: "Python",
+        incorrect_answers: [
+          "C#",
+          "C++",
+          "Java"
+        ]
+      },
+      {
+        type: "multiple",
+        difficulty: "hard",
+        category: "Science: Computers",
+        question: "In computing, what does LAN stand for?",
+        correct_answer: "Local Area Network",
+        incorrect_answers: [
+          "Long Antenna Node",
+          "Light Access Node",
+          "Land Address Navigation"
+        ]
+      }
 ];
 
 const answers = JSON.parse(localStorage.getItem('answers')) || [];
