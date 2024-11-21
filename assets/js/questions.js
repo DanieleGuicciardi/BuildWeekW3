@@ -225,6 +225,7 @@ const array = [];
 let currentAnswer = null;
 const timerElement = document.getElementById("timer");
 const progressCircle = document.querySelector(".progressCircle");
+let questionData;
 const totalQuestions = {
   total: `/${questions.length}`,
   styleTotal: "color: #C2128D",
@@ -249,6 +250,9 @@ function updateTimer() {
   const dashOffset = (439.82 * (100 - percentage)) / 100;
   progressCircle.style.strokeDashoffset = dashOffset;
   if (timeLeft === 0) {
+    if(currentAnswer.selectedAnswer){
+      currentAnswer = questionData.question;
+    };
     saveAnswer();
     resetTimer();
   } else {
@@ -274,7 +278,7 @@ function printQuestion() {
     casual = Math.floor(Math.random() * questions.length);
   } while (array.includes(casual));
   array.push(casual);
-  let questionData = questions[casual];
+  questionData = questions[casual];
   quest.innerText = questionData.question;
   if (questionData.difficulty === "hard") {
     timeLeft = 60;
