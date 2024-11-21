@@ -211,6 +211,7 @@ body {
 .stars-container {
     display: flex;
     gap: 5px;
+    justify-content: center;
 
 }
 
@@ -305,4 +306,11 @@ body {
     line-height: 1.5;
     font-weight: lighter;
     font-size: 0.8em;
+}
+
+
+/* contatore colore */
+
+.totalQuestions{
+    color: #C2128D;
 }
