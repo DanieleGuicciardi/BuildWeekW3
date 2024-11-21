@@ -1,3 +1,4 @@
+//rimettiamo l'array per avere a disposizione la length
 const questions = [
   {
     category: "Science: Computers",
@@ -214,18 +215,18 @@ const questions = [
   }
 ];
 
-const answers = JSON.parse(localStorage.getItem("answers")) || [];
-const totalQuestions = questions.length;
-const correctAnswers = answers.filter((elem) => elem === 1).length;
-const minRequired = questions.length / 2;
-const wrongAnswers = totalQuestions - correctAnswers;
-const ctx = document.getElementById("graph").getContext("2d");
-const correctPercentage = (correctAnswers / totalQuestions) * 100;
-const wrongPercentage = (wrongAnswers / totalQuestions) * 100;
+const answers = JSON.parse(localStorage.getItem("answers")) || []; //estraiamo l'array dal LocalStorage con le risposte
+const totalQuestions = questions.length; //impostiamo il numero di domande totali alla lunghezza dell'array
+const correctAnswers = answers.filter((elem) => elem === 1).length; //otteniamo il numero di 1 presenti nel localStorage (risposte giuste)
+const minRequired = questions.length / 2; //numero di domande richieste per passare l'esame
+const wrongAnswers = totalQuestions - correctAnswers; //calcoliamo il numero di risposte sbagliate e non risposte
+const ctx = document.getElementById("graph").getContext("2d"); //puntiamo il canvas nell'HTML per inserire il grafico creato con char.js
+const correctPercentage = (correctAnswers / totalQuestions) * 100; //percentuale di domande giuste
+const wrongPercentage = (wrongAnswers / totalQuestions) * 100; //percentuale di domande sbagliate
 
 
 
-function scrittaCerchio() {
+function scrittaCerchio() { //inseriamo il testo all' interno del grafico che varia a seconda che sia positivo o negativo
   if (correctAnswers >= minRequired) {
     graphContent.innerHTML = `<h3>Congratulations! You passed the exam.</h3><p> We'll send you the certificate in few minutes. Check your email (including promotions / spam folder)<p/>`;
   } else {
@@ -234,10 +235,10 @@ function scrittaCerchio() {
 }
 
 scrittaCerchio();
-
-const chart = new Chart(ctx, {
+//funzione del grafico
+const chart = new Chart(ctx, { 
   type: 'doughnut',
-  data: {
+  data: { // inserisce i dati delle risposte e stile del grafico
     labels: ['Wrong', 'Correct'],
     datasets: [{
       label: 'Answers',
@@ -261,8 +262,8 @@ const chart = new Chart(ctx, {
   }
 });
 
-document.getElementById('correctResult').innerHTML = `<h2>Correct <br/>${correctPercentage.toFixed(2)}%<br/>${correctAnswers} / ${totalQuestions} questions</h2>`;
-document.getElementById('wrongResult').innerHTML = `<h2>Wrong <br/>${wrongPercentage.toFixed(2)}%<br/>${wrongAnswers} / ${totalQuestions} questions</h2>`;
-document.getElementById("rateUsBtn").addEventListener("click", () => {
+document.getElementById('correctResult').innerHTML = `<h2>Correct <br/>${correctPercentage.toFixed(2)}%<br/>${correctAnswers} / ${totalQuestions} questions</h2>`; //scrive le percentuali e il numero di risposte corrette
+document.getElementById('wrongResult').innerHTML = `<h2>Wrong <br/>${wrongPercentage.toFixed(2)}%<br/>${wrongAnswers} / ${totalQuestions} questions</h2>`; //scrive le perrcentuali e il numero di risposte sbagliate
+document.getElementById("rateUsBtn").addEventListener("click", () => { //bottone che va alla pagina successiva
   window.location.href = "feedback.html";
 });

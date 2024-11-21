@@ -1,3 +1,4 @@
+//array di domande facili e difficili
 const questions = [
   {
     category: "Science: Computers",
@@ -213,7 +214,7 @@ const questions = [
     ]
   }
 ];
-
+//richiamo delle variabili necessarie al funzionamento
 let timeLeft;
 let totalTime;
 let timerId;
@@ -221,13 +222,13 @@ const quest = document.getElementById("questions");
 const btnAvanti = document.getElementById("avanti");
 const answersContainer = document.getElementById("container");
 const counter = document.getElementById("counter");
-const array = [];
+const array = []; //array d'appoggio
 let currentAnswer = null;
 const timerElement = document.getElementById("timer");
 const progressCircle = document.querySelector(".progressCircle");
-let questionData;
+let questionData; //per salvare le domande dell'array dentro la funzione
 const totalQuestions = {
-  total: `/${questions.length}`,
+  total: `/${questions.length}`, //counter di domande
   styleTotal: "color: #C2128D",
 }
 
@@ -235,31 +236,31 @@ const totalQuestions = {
 document.addEventListener("load", init());
 
 function init() {
-  printQuestion();
-  localStorage.clear();
-  startTimer();
+  printQuestion(); //funzione per stampare le domande a schermo
+  localStorage.clear(); //pulire il localstorage per rifare il test
+  startTimer(); // inizio del timer
 }
 
 function startTimer() {
   timerId = setInterval(updateTimer, 1000);
 }
-
+//funzione del cerchio del timer
 function updateTimer() {
-  timerElement.textContent = timeLeft;
-  const percentage = (timeLeft / totalTime) * 100;
-  const dashOffset = (439.82 * (100 - percentage)) / 100;
-  progressCircle.style.strokeDashoffset = dashOffset;
-  if (timeLeft === 0) {
-    if(currentAnswer.selectedAnswer){
-      currentAnswer = questionData.question;
+  timerElement.textContent = timeLeft; 
+  const percentage = (timeLeft / totalTime) * 100; //costante della percentuale del timer
+  const dashOffset = (439.82 * (100 - percentage)) / 100; //il periodo del tempo del cerchio
+  progressCircle.style.strokeDashoffset = dashOffset; 
+  if (timeLeft === 0) { //quando scade il tempo 
+    if(currentAnswer.selectedAnswer){     //controlliamo se una risposta è stata selezionata      
+      currentAnswer = questionData.question; //salviamo solo la domanda 
     };
-    saveAnswer();
-    resetTimer();
+    saveAnswer(); //salva la risposta
+    resetTimer(); //resetta il timer
   } else {
-    timeLeft--;
+    timeLeft--; 
   }
 }
-
+//funzione che resetta tutto
 function resetTimer() {
   clearInterval(timerId);
   progressCircle.style.strokeDashoffset = 0;
@@ -267,75 +268,75 @@ function resetTimer() {
   printQuestion();
   startTimer();
 }
-
+//funzione di stampa delle domande e delle risposte
 function printQuestion() {
-  let casual;
-  if (array.length === questions.length) {
-    nextPage();
-    return;
+  let casual; //prendiamo una variabile
+  if (array.length === questions.length) { //se tutte le domande sono state selezionate
+    nextPage(); //fa andare alla prossima pagina
+    return; //interrompe la funzione
   }
   do {
-    casual = Math.floor(Math.random() * questions.length);
-  } while (array.includes(casual));
-  array.push(casual);
-  questionData = questions[casual];
-  quest.innerText = questionData.question;
-  if (questionData.difficulty === "hard") {
+    casual = Math.floor(Math.random() * questions.length); //impostiamo la variabile a un numero casuale che continua a uscire finche non riesce lo stesso numero fino alla fine delle domande
+  } while (array.includes(casual)); 
+  array.push(casual); //nell'array d'appoggio si scrive il numero uscito in modo che non esca dinuovo
+  questionData = questions[casual]; //salviamo l'oggetto dell'array nella posizione di casual
+  quest.innerText = questionData.question; //dentro l'h1 ci scriviamo la domanda
+  if (questionData.difficulty === "hard") { // il tempo rimanente viene impostato in base alla difficoltà della domanda
     timeLeft = 60;
     totalTime = 60;
   } else {
     timeLeft = 30;
     totalTime = 30;
   }
-  const allAnswers = [...questionData.incorrect_answers, questionData.correct_answer];
-  allAnswers.sort(() => Math.random() - 0.5);
-  answersContainer.innerHTML = '';
+  const allAnswers = [...questionData.incorrect_answers, questionData.correct_answer]; //salviamo le risposte dell'oggetto uscito dentro un array
+  allAnswers.sort(() => Math.random() - 0.5); //mischiamo le risposte 
+  answersContainer.innerHTML = ''; //spazio per il bottone
   allAnswers.forEach(answer => {
-    const button = document.createElement("button");
+    const button = document.createElement("button"); //crea un bottone per ogni risposta nell'array 
     button.setAttribute("type", "button");
     button.innerText = answer;
     button.classList.add("answer-btn");
     currentAnswer = questionData.question;
-    button.addEventListener("click", (event) => selectAnswer(event, answer, questionData.correct_answer, questionData.question));
-    answersContainer.appendChild(button);
+    button.addEventListener("click", (event) => selectAnswer(event, answer, questionData.correct_answer, questionData.question)); //aggiungendo una funzione di click che salva la risposta e la rende selezionata
+    answersContainer.appendChild(button); //stampa in html il bottone
   });
-  counter.innerHTML = `Questions ${array.length}` + getStyledQuestion(totalQuestions);
+  counter.innerHTML = `Questions ${array.length}` + getStyledQuestion(totalQuestions); //conteggio domande
 }
-
+//mandare alla pagina successiva
 function nextPage() {
   location.href = "results.html";
 }
 
-btnAvanti.addEventListener("click", () => saveAnswer());
+btnAvanti.addEventListener("click", () => saveAnswer()); //per il salvataggio delle risposte
 
-function selectAnswer(event, selectedAnswer, correctAnswer, question) {
+function selectAnswer(event, selectedAnswer, correctAnswer, question) { //fa in modo che le domande siano selezionate e il bottone si illumini salvando i dati 
   const buttons = answersContainer.querySelectorAll("button");
-  buttons.forEach(button => button.classList.remove("selected"));
+  buttons.forEach(button => button.classList.remove("selected")); //rimuovo la classe dal bottone precedentemente selezionato
   event.target.classList.add("selected");
-  currentAnswer = {selectedAnswer, correctAnswer, question};
+  currentAnswer = {selectedAnswer, correctAnswer, question}; //salva domanda, risposta corretta e risposta selezionata
 }
-
+//funzione che salva tutto nel localStorage
 function saveAnswer() {
-  let answers = JSON.parse(localStorage.getItem("answers")) || [];
-  if (!currentAnswer.selectedAnswer) {
-    answers.push({
+  let answers = JSON.parse(localStorage.getItem("answers")) || []; //estraiamo l'array dal localStorage o lo inizializziamo nel caso non esistesse
+  if (!currentAnswer.selectedAnswer) { //se la risposta non è stata selezionata
+    answers.push({ //metti la domanda e il numero 0 
       number: 0,
       question: currentAnswer
     });
-  } else if (currentAnswer.selectedAnswer === currentAnswer.correctAnswer) {
+  } else if (currentAnswer.selectedAnswer === currentAnswer.correctAnswer) { //se invece la risposta è corretta metti 1
     answers.push(1);
-  } else {
+  } else { //se la risposta è sbagliata inserisci la domanda, la risposta corretta e la risposta sbagliata
     answers.push({
       question: currentAnswer.question,
       selectedAnswer: currentAnswer.selectedAnswer,
       correctAnswer: currentAnswer.correctAnswer
     })
   };
-  localStorage.setItem("answers", JSON.stringify(answers));
-  currentAnswer = null;
-  resetTimer();
+  localStorage.setItem("answers", JSON.stringify(answers)); //rimettiamo l'array salvato nel localStorage
+  currentAnswer = null; //reimpostiamo currentAnswer
+  resetTimer(); 
 }
 
 function getStyledQuestion(counter) {
-  return `<span style="${counter.styleTotal}">${counter.total}</span>`;   //funzione per colorare la scritta /10
+  return `<span style="${counter.styleTotal}">${counter.total}</span>`;   //funzione per colorare la scritta
 }
