@@ -388,3 +388,22 @@ body {
 .spanExtra {
     color: red;
 }
+
+#welcomeBack {
+    cursor: pointer;
+    width: 13em;
+    height: 3em;
+    font-size: large;
+    font-weight: 700;
+    background-color: #00FFFF;
+    border: none;
+    filter: drop-shadow(0 0 10px #03FFFF);
+    opacity: 1;
+    margin-top: 3em;
+}
+
+.footerExtra {
+    padding-right: 15em;
+    padding-bottom: 10em;
+    text-align: right;
+}
