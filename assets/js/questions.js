@@ -240,27 +240,27 @@ function init() {
   localStorage.clear(); //pulire il localstorage per rifare il test
   startTimer(); // inizio del timer
 }
-
+//funzione che inizia il timer
 function startTimer() {
-  timerId = setInterval(updateTimer, 1000);
+  timerId = setInterval(updateTimer, 1000);// chiamiamo la funzione del timer ogni 1000 millisecondi (1sec)
 }
-//funzione del cerchio del timer
+//funzione del timer
 function updateTimer() {
-  timerElement.textContent = timeLeft; 
-  const percentage = (timeLeft / totalTime) * 100; //costante della percentuale del timer
-  const dashOffset = (439.82 * (100 - percentage)) / 100; //il periodo del tempo del cerchio
-  progressCircle.style.strokeDashoffset = dashOffset; 
-  if (timeLeft === 0) { //quando scade il tempo 
-    if(currentAnswer.selectedAnswer){     //controlliamo se una risposta è stata selezionata      
-      currentAnswer = questionData.question; //salviamo solo la domanda 
+  timerElement.textContent = timeLeft; //aggiorniamo il testo del timer
+  const percentage = (timeLeft / totalTime) * 100; //calcoliamo il tempo restante in percentuale
+  const dashOffset = (439.82 * (100 - percentage)) / 100; //calcoliamo in percentuale la quantita di cerchio restante in base alla sua circonferenza
+  progressCircle.style.strokeDashoffset = dashOffset; //aggiorniamo il cerchio del timer
+  if (timeLeft === 0) { 
+    if(currentAnswer.selectedAnswer){    //se il tempo scade controlla che la risposta sia selezionata     
+      currentAnswer = questionData.question; //se la condizione è verificata salviamo soltanto la domanda corrente
     };
-    saveAnswer(); //salva la risposta
-    resetTimer(); //resetta il timer
+    saveAnswer(); //funzione per salvare la domanda
+    resetTimer(); //funzione di reset della domanda
   } else {
-    timeLeft--; 
+    timeLeft--; //timer che diminuisce di 1 ogni secondo
   }
 }
-//funzione che resetta tutto
+//funzione di reset della pagina
 function resetTimer() {
   clearInterval(timerId);
   progressCircle.style.strokeDashoffset = 0;
