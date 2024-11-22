@@ -43,6 +43,7 @@ Nella pagina extra, l’utente ha la possibilità di vedere le risposte non date
 - **HTML5**: struttura delle pagine.
 - **CSS3**: stile e layout delle pagine.
 - **JavaScript**: funzionalità interattive, salvataggio dei dati e analisi.
+- **Chart.js**: libreria per la creazione di grafici interattivi e visualizzazioni di dati.
 - **Git & GitHub**: gestione del versionamento e collaborazione.
 
 ---
