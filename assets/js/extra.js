@@ -1,6 +1,7 @@
 //richiamo delle variabili
 const wrongDiv = document.getElementById("wrongAnswer");
 const answers = JSON.parse(localStorage.getItem("answers")) || []; //estraiamo l'array dal localStorage
+const btnBack = document.getElementById("welcomeBack");
 
 
 document.addEventListener("load", init());
@@ -43,4 +44,10 @@ function printQuest() { //controlla per ogni elemento se la risposta è sbagliat
             wrongDiv.appendChild(p2);
         }
     });
+}
+
+btnBack.addEventListener("click", welcomePage);
+
+function welcomePage() {
+    location.href = "welcome.html";
 }
