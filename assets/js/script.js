@@ -1,13 +1,14 @@
+//richiamo all' HTML
 const form = document.getElementById("footerForm");
-const btnWelcome = document.getElementById("welcomeBtn");
 const checkBox = document.getElementById("welcomeCheckBox");
 const advert = document.getElementById("advert");
 
+//funzione evento che ti obbliga a fare check sul quadratino per proseguire
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     if(!checkBox.checked){
        advert.innerText = "Check the box";
-       return;
+       return; //impedisce alla funzione di andare avanti
     }
-    form.submit();
+    form.submit(); //esegue l'evento
 })
